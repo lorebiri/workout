@@ -87,7 +87,7 @@ body{
 /* ── Set circles ── */
 .sets-row{display:flex;align-items:center;gap:7px}
 .set-circles{display:flex;gap:5px;flex-wrap:wrap;flex:1}
-.set-c{width:44px;height:44px;border-radius:50%;border:2px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text3);transition:all .18s;flex-shrink:0;user-select:none}
+.set-c{width:54px;height:54px;border-radius:50%;border:2px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--text3);transition:all .18s;flex-shrink:0;user-select:none}
 .set-c.done{background:var(--green);border-color:var(--green);color:#0a0a0a}
 .set-c:active{transform:scale(.86)}
 .btn-rst{background:none;border:1px solid var(--border);border-radius:7px;color:var(--text3);padding:5px 9px;font-size:12px;cursor:pointer;flex-shrink:0}
@@ -383,6 +383,13 @@ body{
   <button class="nav-btn"    onclick="showScr('add')"><span class="ico">➕</span>Esercizi</button>
 </nav>
 
+<!-- Fullscreen rest-done flash -->
+<div id="rdf" style="display:none;position:fixed;inset:0;background:#16a34a;z-index:900;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity .4s">
+  <div style="font-size:64px">✅</div>
+  <div style="font-size:30px;font-weight:800;color:#fff;margin-top:14px">RECUPERO TERMINATO</div>
+  <div style="font-size:16px;color:#bbf7d0;margin-top:8px">Inizia la prossima serie!</div>
+</div>
+
 <div class="rp" id="rp">
   <div class="rp-time" id="rp-t">2:00</div>
   <div class="rp-info"><div class="rp-name" id="rp-n">Recupero</div><div class="rp-sub">Prossima serie pronta!</div></div>
@@ -459,10 +466,10 @@ const PROG = {
           ]},
         { id:'panca1', emoji:'🏋️', name:'Panca 3″↓ 3″↑', barType:'bar', barKg:20,
           wk:[
-            {groups:[{n:1,r:'5',kg:65,ref:true},{n:3,r:'3',kg:65,backoffPct:100}], rec:"2'/3'", note:'Medio su 1° anello · 3 sec discesa, 3 sec risalita'},
-            {groups:[{n:1,r:'4',kg:70,ref:true},{n:4,r:'2',kg:70,backoffPct:100}], rec:"2'/3'", note:'Medio su 1° anello · 3 sec discesa, 3 sec risalita'},
-            {groups:[{n:1,r:'3',kg:70,ref:true},{n:3,r:'3',kg:63,backoffPct:90}], rec:"2'/3'", note:'Medio su 1° anello · 3 sec discesa, 3 sec risalita'},
-            {groups:[{n:1,r:'2',kg:72.5,ref:true},{n:4,r:'2',kg:65.25,backoffPct:90}], rec:"2'/3'", note:'Medio su 1° anello · 3 sec discesa, 3 sec risalita'},
+            {groups:[{n:1,r:'5',kg:65,ref:true},{n:3,r:'3',kg:65,backoffPct:100}], rec:"3'", note:'Medio su 1° anello · 3 sec discesa, 3 sec risalita'},
+            {groups:[{n:1,r:'4',kg:70,ref:true},{n:4,r:'2',kg:70,backoffPct:100}], rec:"3'", note:'Medio su 1° anello · 3 sec discesa, 3 sec risalita'},
+            {groups:[{n:1,r:'3',kg:70,ref:true},{n:3,r:'3',kg:63,backoffPct:90}], rec:"3'", note:'Medio su 1° anello · 3 sec discesa, 3 sec risalita'},
+            {groups:[{n:1,r:'2',kg:72.5,ref:true},{n:4,r:'2',kg:65.25,backoffPct:90}], rec:"3'", note:'Medio su 1° anello · 3 sec discesa, 3 sec risalita'},
           ]},
       ],
       circuits: [
@@ -470,7 +477,7 @@ const PROG = {
           type:'amrap', amrMin:10, label:'AMRAP 10 min',
           ex:[
             {name:'Affondi bulgari', reps:'10×lato', kg:'10+10 kg'},
-            {name:'Rematore manubrio singolo', reps:'10×lato', kg:'19 kg'},
+            {name:'Rematore manubrio singolo', reps:'10×lato', kg:'18 kg'},
             {name:'Piegamenti elastico', reps:'10 rep', kg:''},
           ]
         },
@@ -490,10 +497,10 @@ const PROG = {
       main: [
         { id:'military', emoji:'🎯', name:'Military Press', barType:'bar', barKg:20,
           wk:[
-            {groups:[{n:1,r:'4',kg:47.5},{n:2,r:'4',kg:42.5},{n:2,r:'4',kg:40}], rec:"2'"},
-            {groups:[{n:1,r:'3',kg:52.5},{n:2,r:'3',kg:47.5},{n:2,r:'3',kg:42.5}], rec:"2'"},
-            {groups:[{n:1,r:'2',kg:57.5},{n:2,r:'2',kg:52.5},{n:2,r:'2',kg:47.5}], rec:"2'"},
-            {groups:[{n:1,r:'1',kg:62.5},{n:2,r:'1',kg:57.5},{n:2,r:'1',kg:52.5}], rec:"2'"},
+            {groups:[{n:1,r:'4',kg:47.5},{n:2,r:'4',kg:42.5},{n:2,r:'4',kg:40}], rec:"2'", note:'Altezza rack: foro 29'},
+            {groups:[{n:1,r:'3',kg:52.5},{n:2,r:'3',kg:47.5},{n:2,r:'3',kg:42.5}], rec:"2'", note:'Altezza rack: foro 29'},
+            {groups:[{n:1,r:'2',kg:57.5},{n:2,r:'2',kg:52.5},{n:2,r:'2',kg:47.5}], rec:"2'", note:'Altezza rack: foro 29'},
+            {groups:[{n:1,r:'1',kg:62.5},{n:2,r:'1',kg:57.5},{n:2,r:'1',kg:52.5}], rec:"2'", note:'Altezza rack: foro 29'},
           ]},
         { id:'rem_bil', emoji:'🚣', name:'Rematore Bilanciere', barType:'bar', barKg:20,
           wk:[
@@ -542,10 +549,10 @@ const PROG = {
           ]},
         { id:'squat_t', emoji:'🦵', name:'Squat 4″↓ 4″↑', barType:'bar', barKg:20,
           wk:[
-            {groups:[{n:1,r:'5',kg:75,ref:true},{n:3,r:'3',kg:75,backoffPct:100}], rec:"2'/3'", note:'Altezza rack: foro 29 · 4 sec discesa, 4 sec risalita'},
-            {groups:[{n:1,r:'4',kg:85,ref:true},{n:4,r:'2',kg:85,backoffPct:100}], rec:"2'/3'", note:'Altezza rack: foro 29 · 4 sec discesa, 4 sec risalita'},
-            {groups:[{n:1,r:'3',kg:90,ref:true},{n:3,r:'3',kg:81,backoffPct:90}], rec:"2'/3'", note:'Altezza rack: foro 29 · 4 sec discesa, 4 sec risalita'},
-            {groups:[{n:1,r:'2',kg:100,ref:true},{n:4,r:'2',kg:90,backoffPct:90}], rec:"2'/3'", note:'Altezza rack: foro 29 · 4 sec discesa, 4 sec risalita'},
+            {groups:[{n:1,r:'5',kg:75,ref:true},{n:3,r:'3',kg:75,backoffPct:100}], rec:"3'", note:'Altezza rack: foro 29 · 4 sec discesa, 4 sec risalita'},
+            {groups:[{n:1,r:'4',kg:85,ref:true},{n:4,r:'2',kg:85,backoffPct:100}], rec:"3'", note:'Altezza rack: foro 29 · 4 sec discesa, 4 sec risalita'},
+            {groups:[{n:1,r:'3',kg:90,ref:true},{n:3,r:'3',kg:81,backoffPct:90}], rec:"3'", note:'Altezza rack: foro 29 · 4 sec discesa, 4 sec risalita'},
+            {groups:[{n:1,r:'2',kg:100,ref:true},{n:4,r:'2',kg:90,backoffPct:90}], rec:"3'", note:'Altezza rack: foro 29 · 4 sec discesa, 4 sec risalita'},
           ]},
         { id:'traz3', emoji:'⬇️', name:'Lat Machine – Trazioni', barType:'machine',
           wk:[
@@ -630,8 +637,6 @@ function _dayByDate(){
   tabReset(); amrRefUI(); rstRefUI(); strRefUI();
   buildStrDots();
   _reqNotif();
-  // Unlock audio on first touch
-  document.addEventListener('touchstart', ()=>_audio(), {once:true});
 })();
 
 // ─── REF KG + PR NOTES ───────────────────────────────────────────────────────
@@ -859,19 +864,30 @@ function parseRec(s){
   return 0;
 }
 
+// ─── REST DONE FLASH ─────────────────────────────────────────────────────────
+function showRestDoneFlash(){
+  buzz();
+  const el=document.getElementById('rdf');
+  el.style.opacity='1'; el.style.display='flex';
+  setTimeout(()=>{ el.style.opacity='0'; setTimeout(()=>{ el.style.display='none'; el.style.opacity='1'; },420); },2200);
+}
 // ─── REST POPUP ──────────────────────────────────────────────────────────────
-function showRP(secs,name,done,tot){
+function showRP(secs,name,doneN,tot){
   if(rp.iv) clearInterval(rp.iv);
   rp.rem=secs;
-  document.getElementById('rp-n').textContent=`${name} – serie ${done}/${tot}`;
+  document.getElementById('rp-n').textContent=`${name} – serie ${doneN}/${tot}`;
   document.getElementById('rp').classList.add('show');
-  function tick(){ const m=Math.floor(rp.rem/60),s=rp.rem%60; document.getElementById('rp-t').textContent=m+':'+String(s).padStart(2,'0'); if(rp.rem<=0){clearInterval(rp.iv);document.getElementById('rp').classList.remove('show');buzz();return;} rp.rem--; }
+  function tick(){ const m=Math.floor(rp.rem/60),s=rp.rem%60; document.getElementById('rp-t').textContent=m+':'+String(s).padStart(2,'0'); if(rp.rem<=0){clearInterval(rp.iv);document.getElementById('rp').classList.remove('show');showRestDoneFlash();return;} rp.rem--; }
   tick(); rp.iv=setInterval(tick,1000);
 }
 function rpSkip(){ if(rp.iv) clearInterval(rp.iv); document.getElementById('rp').classList.remove('show'); }
 // ─── AUDIO ───────────────────────────────────────────────────────────────────
 let _ac = null;
-function _audio(){ if(!_ac) try{_ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){return null;} return _ac; }
+function _audio(){
+  if(!_ac) try{_ac=new(window.AudioContext||window.webkitAudioContext)();}catch(e){return null;}
+  if(_ac.state==='suspended') _ac.resume().catch(()=>{});
+  return _ac;
+}
 function playTone(freq,dur,delay){
   delay=delay||0; const a=_audio(); if(!a)return;
   const o=a.createOscillator(),g=a.createGain();
@@ -884,6 +900,18 @@ function playTone(freq,dur,delay){
 function buzz(){ try{navigator.vibrate([200,100,200]);}catch(e){} playTone(880,0.22); playTone(880,0.22,0.32); notify('⏱ Timer','Fase completata!'); }
 function beepTick(){ playTone(660,0.07); }
 function beepPhase(){ try{navigator.vibrate([80]);}catch(e){} playTone(523,0.12); playTone(659,0.12,0.17); playTone(784,0.25,0.34); }
+
+// Silent audio loop — keeps AudioContext alive and prevents iOS screen dim
+let _silentSrc = null;
+function _startSilentLoop(){
+  const a=_audio(); if(!a||_silentSrc) return;
+  try{
+    const buf=a.createBuffer(1,a.sampleRate*2,a.sampleRate); // 2s silence
+    _silentSrc=a.createBufferSource();
+    _silentSrc.buffer=buf; _silentSrc.loop=true;
+    _silentSrc.connect(a.destination); _silentSrc.start();
+  }catch(e){}
+}
 // ─── NOTIFICATIONS ────────────────────────────────────────────────────────────
 async function _reqNotif(){ try{ if('Notification'in window&&Notification.permission==='default') await Notification.requestPermission(); }catch(e){} }
 function notify(title,body){ try{ if('Notification'in window&&Notification.permission==='granted') new Notification(title,{body,silent:true}); }catch(e){} }
@@ -1070,9 +1098,19 @@ function delEx(di,ei){ custom[di].splice(ei,1); localStorage.setItem('lw_custom'
 // ─── WAKE LOCK ───────────────────────────────────────────────────────────────
 let _wakeLock = null;
 async function _acquireWakeLock(){
-  try{ if('wakeLock' in navigator){ _wakeLock = await navigator.wakeLock.request('screen'); } }catch(e){}
+  try{
+    if('wakeLock' in navigator){
+      _wakeLock = await navigator.wakeLock.request('screen');
+      _wakeLock.addEventListener('release', ()=>{ _wakeLock=null; });
+    }
+  }catch(e){}
 }
-_acquireWakeLock();
+// First touch: unlock audio, start silent loop (prevents iOS screen dim), acquire wake lock
+document.addEventListener('touchstart', ()=>{
+  _audio();
+  _startSilentLoop();
+  _acquireWakeLock();
+}, {once:true});
 
 // ─── BACKGROUND TIMER CORRECTION ─────────────────────────────────────────────
 let _hiddenAt = 0;
@@ -1082,6 +1120,8 @@ document.addEventListener('visibilitychange',()=>{
   } else {
     if(_hiddenAt>0){ const s=Math.floor((Date.now()-_hiddenAt)/1000); if(s>0)_advTimers(s); _hiddenAt=0; }
     _acquireWakeLock();
+    // Resume audio context after coming back from background
+    if(_ac&&_ac.state==='suspended') _ac.resume().catch(()=>{});
   }
 });
 function _advTimers(secs){
@@ -1114,7 +1154,7 @@ function _advTimers(secs){
     if(str.totRem<=0){clearInterval(str.iv);str.running=false;}
     strRefUI();
   }
-  if(rp.iv&&rp.rem>0){ rp.rem=Math.max(0,rp.rem-secs); if(rp.rem<=0){rpSkip();buzz();} }
+  if(rp.iv&&rp.rem>0){ rp.rem=Math.max(0,rp.rem-secs); if(rp.rem<=0){rpSkip();showRestDoneFlash();} }
 }
 
 function renderCustomList(){
