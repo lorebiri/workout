@@ -384,10 +384,11 @@ body{
 </nav>
 
 <!-- Fullscreen rest-done flash -->
-<div id="rdf" style="display:none;position:fixed;inset:0;background:#16a34a;z-index:900;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:opacity .4s">
-  <div style="font-size:64px">✅</div>
-  <div style="font-size:30px;font-weight:800;color:#fff;margin-top:14px">RECUPERO TERMINATO</div>
-  <div style="font-size:16px;color:#bbf7d0;margin-top:8px">Inizia la prossima serie!</div>
+<div id="rdf" style="display:none;position:fixed;inset:0;background:#16a34a;z-index:900;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px">
+  <div style="font-size:72px">✅</div>
+  <div style="font-size:32px;font-weight:800;color:#fff;margin-top:16px">RECUPERO TERMINATO</div>
+  <div style="font-size:18px;color:#bbf7d0;margin-top:10px;margin-bottom:36px">Inizia la prossima serie!</div>
+  <button onclick="document.getElementById('rdf').style.display='none'" style="background:#fff;color:#16a34a;border:none;border-radius:14px;padding:18px 56px;font-size:20px;font-weight:800;cursor:pointer;letter-spacing:.5px">OK</button>
 </div>
 
 <div class="rp" id="rp">
@@ -454,7 +455,7 @@ const PROG = {
           wk:[
             {groups:[{n:4,r:'4',kg:'-20+5'}]},
             {groups:[{n:4,r:'5',kg:'-20+5'}]},
-            {groups:[{n:4,r:'6',kg:'-20+5'}]},
+            {groups:[{n:5,r:'6',kg:'-20+5'}]},
             {groups:[{n:4,r:'7',kg:'-20+5'}]},
           ]},
         { id:'squat1', emoji:'🦵', name:'Squat', barType:'bar', barKg:20,
@@ -867,9 +868,8 @@ function parseRec(s){
 // ─── REST DONE FLASH ─────────────────────────────────────────────────────────
 function showRestDoneFlash(){
   buzz();
-  const el=document.getElementById('rdf');
-  el.style.opacity='1'; el.style.display='flex';
-  setTimeout(()=>{ el.style.opacity='0'; setTimeout(()=>{ el.style.display='none'; el.style.opacity='1'; },420); },2200);
+  notify('✅ Recupero terminato!', 'Inizia la prossima serie!');
+  document.getElementById('rdf').style.display='flex';
 }
 // ─── REST POPUP ──────────────────────────────────────────────────────────────
 function showRP(secs,name,doneN,tot){
@@ -897,7 +897,7 @@ function playTone(freq,dur,delay){
   g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+delay+dur);
   o.start(a.currentTime+delay); o.stop(a.currentTime+delay+dur+0.05);
 }
-function buzz(){ try{navigator.vibrate([200,100,200]);}catch(e){} playTone(880,0.22); playTone(880,0.22,0.32); notify('⏱ Timer','Fase completata!'); }
+function buzz(){ try{navigator.vibrate([200,100,200]);}catch(e){} playTone(880,0.22); playTone(880,0.22,0.32); }
 function beepTick(){ playTone(660,0.07); }
 function beepPhase(){ try{navigator.vibrate([80]);}catch(e){} playTone(523,0.12); playTone(659,0.12,0.17); playTone(784,0.25,0.34); }
 
@@ -941,7 +941,7 @@ function amrToggle(){
   else {
     if(amr.rem<=0){amr.rem=amr.min*60;amr.tot=amr.rem;}
     amr.running=true; document.getElementById('amr-go').textContent='⏸ Pausa';
-    amr.iv=setInterval(()=>{amr.rem--;amrRefUI();if(amr.rem<=0){clearInterval(amr.iv);amr.running=false;document.getElementById('amr-go').textContent='▶ Avvia';buzz();notify('⏱ AMRAP','Tempo scaduto!');}},1000);
+    amr.iv=setInterval(()=>{amr.rem--;amrRefUI();if(amr.rem<=0){clearInterval(amr.iv);amr.running=false;document.getElementById('amr-go').textContent='▶ Avvia';buzz();notify('⏱ AMRAP terminato!',`${amr.min} minuti completati — segnare i round!`);}},1000);
   }
 }
 function amrReset(){ clearInterval(amr.iv);amr.running=false;amr.rem=amr.min*60;amr.tot=amr.rem;amr.rounds=0;document.getElementById('amr-go').textContent='▶ Avvia';amrRefUI(); }
@@ -977,20 +977,24 @@ function tabTick(){
       if(tab.curEx<tab.exPerRound){
         // next exercise in same round
         tab.curEx++; tab.phase='restEx'; tab.rem=tab.restEx;
+        notify('💤 Riposo', tab.restEx+'″ · poi Es. '+tab.curEx+'/'+tab.exPerRound);
       } else if(tab.curRound<tab.rounds){
         // last ex of round → round rest
         tab.curRound++; tab.curEx=1; tab.phase='restRound'; tab.rem=tab.restRound;
+        notify('⏸ Pausa round', tab.restRound+'″ · Round '+(tab.curRound-1)+'/'+tab.rounds+' completato');
       } else {
         // all done
         clearInterval(tab.iv); tab.running=false;
         document.getElementById('tab-go').textContent='▶ Avvia';
         document.getElementById('tab-phase').textContent='🎉 COMPLETATO!';
-        buzz(); notify('🔥 Tabata','Completato!'); return;
+        buzz(); notify('🔥 Tabata completato!', 'Ottimo lavoro — '+tab.rounds+' round finiti!'); return;
       }
     } else if(tab.phase==='restEx'){
       tab.phase='work'; tab.rem=tab.exDuration;
+      notify('🔥 Vai!', 'Es. '+tab.curEx+'/'+tab.exPerRound+' · Round '+tab.curRound+'/'+tab.rounds);
     } else if(tab.phase==='restRound'){
       tab.phase='work'; tab.rem=tab.exDuration;
+      notify('🔥 Round '+tab.curRound+'!', 'Es. 1/'+tab.exPerRound+' · Dai tutto!');
     }
   }
   tabRefUI();
@@ -1027,7 +1031,7 @@ function tabRefUI(){
 function rstAdj(d){ if(rst.running)return; rst.sec=Math.max(15,rst.sec+d); rst.rem=rst.sec; rst.tot=rst.sec; document.getElementById('rst-val').textContent=rst.sec; rstRefUI(); }
 function rstToggle(){
   if(rst.running){clearInterval(rst.iv);rst.running=false;document.getElementById('rst-go').textContent='▶ Riprendi';}
-  else{if(rst.rem<=0){rst.rem=rst.sec;rst.tot=rst.sec;}rst.running=true;document.getElementById('rst-go').textContent='⏸ Pausa';rst.iv=setInterval(()=>{rst.rem--;rstRefUI();if(rst.rem<=0){clearInterval(rst.iv);rst.running=false;document.getElementById('rst-go').textContent='▶ Avvia';buzz();}},1000);}
+  else{if(rst.rem<=0){rst.rem=rst.sec;rst.tot=rst.sec;}rst.running=true;document.getElementById('rst-go').textContent='⏸ Pausa';rst.iv=setInterval(()=>{rst.rem--;rstRefUI();if(rst.rem<=0){clearInterval(rst.iv);rst.running=false;document.getElementById('rst-go').textContent='▶ Avvia';buzz();notify('⏱ Recupero terminato!','Pronto per la prossima serie!');}},1000);}
 }
 function rstReset(){ clearInterval(rst.iv);rst.running=false;rst.rem=rst.sec;rst.tot=rst.sec;document.getElementById('rst-go').textContent='▶ Avvia';rstRefUI(); }
 function rstRefUI(){
@@ -1051,8 +1055,14 @@ function strTick(){
   str.rem--;
   if(str.totRem<=0){clearInterval(str.iv);str.running=false;document.getElementById('str-go').textContent='▶ Avvia';document.getElementById('str-phase').textContent='🎉 COMPLETATO!';document.getElementById('str-cnt').textContent='✓';buzz();notify('🧘 Stretching','Completato!');return;}
   if(str.rem<0){
-    if(str.phase==='hold'){str.phase='trans';str.rem=STR_TRANS;beepPhase();}
-    else{str.exIdx=(str.exIdx+1)%STR_EX.length;str.phase='hold';str.rem=STR_HOLD;beepPhase();}
+    if(str.phase==='hold'){
+      str.phase='trans';str.rem=STR_TRANS;beepPhase();
+      const next=STR_EX[(str.exIdx+1)%STR_EX.length];
+      notify('➡️ Cambia posizione!','Prossimo: '+next);
+    } else {
+      str.exIdx=(str.exIdx+1)%STR_EX.length;str.phase='hold';str.rem=STR_HOLD;beepPhase();
+      notify('🧘 Posizione '+(str.exIdx+1)+'/'+STR_EX.length,STR_EX[str.exIdx]);
+    }
   } else if(str.rem<=3&&str.rem>0){
     beepTick();
   }
