@@ -18,7 +18,7 @@ html,body{height:100%;overflow-x:hidden}
 body{
   background:var(--bg);color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;
-  max-width:480px;margin:0 auto;padding-bottom:84px;
+  max-width:480px;margin:0 auto;padding-bottom:24px;
 }
 
 /* ── Header ── */
@@ -97,8 +97,6 @@ body{
 
 /* ── HIIT Circuit card ── */
 .circuit-card{background:var(--card);border-radius:14px;padding:14px;margin-bottom:10px;border:1px solid #a855f720}
-.circ-launch{width:100%;padding:13px;background:linear-gradient(135deg,#7c3aed,#a855f7);border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;transition:opacity .15s}
-.circ-launch:active{opacity:.82}
 .circ-ex-list{list-style:none;margin-bottom:12px}
 .circ-ex-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
 .circ-ex-item:last-child{border-bottom:none}
@@ -114,68 +112,6 @@ body{
 .circ-rnd-sub{font-size:13px;font-weight:600;color:var(--text2);margin-top:2px}
 .circ-rnd-ctrl button{width:32px;height:32px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:18px;cursor:pointer;margin-left:5px;display:inline-flex;align-items:center;justify-content:center}
 
-/* ── Timer screen ── */
-.tmr-tabs{display:flex;gap:6px;margin-bottom:13px;overflow-x:auto;padding-bottom:2px}
-.tmr-tab{flex:0 0 auto;padding:9px 12px;background:var(--card);border:1.5px solid var(--border);border-radius:10px;color:var(--text3);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap}
-.tmr-tab.on{border-color:var(--accent);color:var(--accent);background:var(--surf)}
-
-.tmr-display{background:var(--card);border-radius:16px;padding:26px 20px 22px;text-align:center;margin-bottom:13px}
-.tmr-phase{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:8px;font-weight:600}
-.tmr-big{font-size:76px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-4px;transition:color .3s}
-.c-green{color:var(--green)}.c-blue{color:var(--blue)}.c-warn{color:var(--accent)}.c-teal{color:var(--teal)}
-.tmr-sub{font-size:13px;color:var(--text3);margin-top:10px}
-.tmr-sub strong{color:var(--text2)}
-.prog{height:4px;background:var(--border);border-radius:2px;margin-top:14px;overflow:hidden}
-.prog-fill{height:100%;border-radius:2px;transition:width .9s linear}
-.pf-g{background:var(--green)}.pf-b{background:var(--blue)}.pf-p{background:var(--purple)}.pf-t{background:var(--teal)}
-
-.tmr-cfg{background:var(--card);border-radius:12px;padding:0 14px;margin-bottom:13px}
-.cfg-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
-.cfg-row:last-child{border-bottom:none}
-.cfg-lbl{font-size:14px;color:var(--text2)}
-.cfg-ctrl{display:flex;align-items:center;gap:10px}
-.cfg-btn{width:30px;height:30px;border-radius:50%;background:var(--surf);border:1px solid var(--border);color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.cfg-val{font-size:16px;font-weight:700;min-width:36px;text-align:center}
-
-.tmr-btns{display:flex;gap:10px}
-.t-btn{flex:1;padding:15px;border-radius:12px;border:none;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .15s}
-.t-btn:active{opacity:.8}
-.t-go{background:var(--green);color:#0a0a0a}
-.t-stop{background:var(--surf);color:var(--text2);border:1px solid var(--border)}
-
-.amr-rnd-box{background:var(--card);border-radius:12px;padding:13px;margin-top:13px;display:flex;align-items:center;gap:12px}
-.amr-rnd-n{font-size:36px;font-weight:700;color:var(--purple)}
-.amr-rnd-info{flex:1}
-.amr-rnd-info .lbl{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text3)}
-.amr-rnd-ctrl button{width:36px;height:36px;border-radius:50%;background:var(--surf);border:1px solid var(--border);color:var(--text);font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;margin-left:6px}
-
-/* ── Stretching timer ── */
-.str-bar{background:var(--card);border-radius:12px;padding:12px 14px;margin-bottom:13px;display:flex;align-items:center;gap:12px}
-.str-bar-label{font-size:12px;color:var(--text3);flex:1}
-.str-bar-time{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--teal)}
-.str-main{background:var(--card);border-radius:16px;padding:24px 20px;text-align:center;margin-bottom:13px}
-.str-phase{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:8px;font-weight:600}
-.str-ex{font-size:34px;font-weight:700;margin-bottom:6px;min-height:44px;display:flex;align-items:center;justify-content:center}
-.str-cnt{font-size:72px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-3px;line-height:1;color:var(--teal)}
-.str-next{font-size:13px;color:var(--text3);margin-top:12px}
-.str-dots{display:flex;gap:7px;justify-content:center;margin-bottom:13px}
-.str-dot{width:10px;height:10px;border-radius:50%;background:var(--border);transition:background .3s}
-.str-dot.on{background:var(--teal)}
-
-/* ── Add screen ── */
-.add-form{background:var(--card);border-radius:14px;padding:15px}
-.fg{margin-bottom:13px}
-.fl{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:6px;font-weight:600}
-.fi,.fsel{width:100%;background:var(--surf);border:1px solid var(--border);border-radius:9px;color:var(--text);padding:11px 13px;font-size:15px}
-.fi:focus,.fsel:focus{outline:none;border-color:var(--accent)}
-.fi::placeholder{color:var(--text3)}
-.fsel option{background:var(--surf)}
-.frow{display:flex;gap:10px}.frow .fg{flex:1}
-.btn-save{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:11px;font-size:16px;font-weight:700;cursor:pointer;margin-top:4px}
-.sl{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin:14px 0 8px;font-weight:600}
-.ci{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:10px;padding:11px;margin-bottom:8px;border:1px solid var(--border)}
-.ci-info{flex:1}.ci-name{font-size:14px;font-weight:600}.ci-meta{font-size:11px;color:var(--text3);margin-top:2px}
-.ci-del{background:none;border:none;color:var(--text3);font-size:19px;cursor:pointer;padding:4px}
 
 /* ── Rest popup ── */
 .rp{display:none;position:fixed;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 26px);max-width:454px;background:#1c2333;border:1px solid #334155;border-radius:14px;padding:13px 15px;z-index:200;align-items:center;gap:12px;box-shadow:0 8px 32px #0007}
@@ -231,150 +167,6 @@ body{
   <div id="ex-list"></div>
 </div>
 
-<!-- ── TIMER ── -->
-<div class="scr" id="scr-timer">
-  <div class="tmr-tabs">
-    <div class="tmr-tab on"  onclick="setTMode('amrap')">⏱ AMRAP</div>
-    <div class="tmr-tab"     onclick="setTMode('tabata')">🔥 Tabata</div>
-    <div class="tmr-tab"     onclick="setTMode('rest')">💤 Recupero</div>
-    <div class="tmr-tab"     onclick="setTMode('stretch')">🧘 Stretching</div>
-  </div>
-
-  <!-- AMRAP -->
-  <div id="pnl-amrap">
-    <div class="tmr-display">
-      <div class="tmr-phase">AMRAP</div>
-      <div class="tmr-big c-green" id="amr-disp">10:00</div>
-      <div class="prog"><div class="prog-fill pf-g" id="amr-prog" style="width:100%"></div></div>
-    </div>
-    <div class="tmr-cfg">
-      <div class="cfg-row">
-        <span class="cfg-lbl">Durata (min)</span>
-        <div class="cfg-ctrl">
-          <button class="cfg-btn" onclick="amrAdj(-1)">−</button>
-          <span class="cfg-val" id="amr-min">10</span>
-          <button class="cfg-btn" onclick="amrAdj(1)">+</button>
-        </div>
-      </div>
-    </div>
-    <div class="tmr-btns">
-      <button class="t-btn t-go" id="amr-go" onclick="amrToggle()">▶ Avvia</button>
-      <button class="t-btn t-stop" onclick="amrReset()">■ Reset</button>
-    </div>
-    <div class="amr-rnd-box">
-      <div class="amr-rnd-n" id="amr-rnd-n">0</div>
-      <div class="amr-rnd-info"><div class="lbl">Round completati</div></div>
-      <div class="amr-rnd-ctrl">
-        <button onclick="amrRndAdj(-1)">−</button>
-        <button onclick="amrRndAdj(1)">+</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- TABATA -->
-  <div id="pnl-tabata" style="display:none">
-    <div class="tmr-display">
-      <div class="tmr-phase" id="tab-phase">🔥 LAVORO</div>
-      <div class="tmr-big c-green" id="tab-disp">00:30</div>
-      <div class="prog"><div class="prog-fill pf-g" id="tab-prog" style="width:100%"></div></div>
-      <div class="tmr-sub">Round <strong id="tab-cur-r">1</strong>/<strong id="tab-tot-r">5</strong> &nbsp;·&nbsp; Es. <strong id="tab-cur-e">1</strong>/<strong id="tab-tot-e">5</strong></div>
-    </div>
-    <div class="tmr-cfg">
-      <div class="cfg-row">
-        <span class="cfg-lbl">Esercizi per round</span>
-        <div class="cfg-ctrl">
-          <button class="cfg-btn" onclick="tabAdj('e',-1)">−</button>
-          <span class="cfg-val" id="tab-ev">5</span>
-          <button class="cfg-btn" onclick="tabAdj('e',1)">+</button>
-        </div>
-      </div>
-      <div class="cfg-row">
-        <span class="cfg-lbl">Lavoro per esercizio (sec)</span>
-        <div class="cfg-ctrl">
-          <button class="cfg-btn" onclick="tabAdj('w',-5)">−</button>
-          <span class="cfg-val" id="tab-wv">30</span>
-          <button class="cfg-btn" onclick="tabAdj('w',5)">+</button>
-        </div>
-      </div>
-      <div class="cfg-row">
-        <span class="cfg-lbl">Riposo tra esercizi (sec)</span>
-        <div class="cfg-ctrl">
-          <button class="cfg-btn" onclick="tabAdj('rx',-5)">−</button>
-          <span class="cfg-val" id="tab-rxv">10</span>
-          <button class="cfg-btn" onclick="tabAdj('rx',5)">+</button>
-        </div>
-      </div>
-      <div class="cfg-row">
-        <span class="cfg-lbl">Round totali</span>
-        <div class="cfg-ctrl">
-          <button class="cfg-btn" onclick="tabAdj('n',-1)">−</button>
-          <span class="cfg-val" id="tab-nv">5</span>
-          <button class="cfg-btn" onclick="tabAdj('n',1)">+</button>
-        </div>
-      </div>
-      <div class="cfg-row">
-        <span class="cfg-lbl">Riposo tra round (sec)</span>
-        <div class="cfg-ctrl">
-          <button class="cfg-btn" onclick="tabAdj('rr',-15)">−</button>
-          <span class="cfg-val" id="tab-rrv">90</span>
-          <button class="cfg-btn" onclick="tabAdj('rr',15)">+</button>
-        </div>
-      </div>
-    </div>
-    <div class="tmr-btns">
-      <button class="t-btn t-go" id="tab-go" onclick="tabToggle()">▶ Avvia</button>
-      <button class="t-btn t-stop" onclick="tabReset()">■ Reset</button>
-    </div>
-  </div>
-
-  <!-- RECUPERO -->
-  <div id="pnl-rest" style="display:none">
-    <div class="tmr-display">
-      <div class="tmr-phase">💤 RECUPERO</div>
-      <div class="tmr-big c-blue" id="rst-disp">02:00</div>
-      <div class="prog"><div class="prog-fill pf-b" id="rst-prog" style="width:100%"></div></div>
-    </div>
-    <div class="tmr-cfg">
-      <div class="cfg-row">
-        <span class="cfg-lbl">Durata (sec)</span>
-        <div class="cfg-ctrl">
-          <button class="cfg-btn" onclick="rstAdj(-15)">−</button>
-          <span class="cfg-val" id="rst-val">120</span>
-          <button class="cfg-btn" onclick="rstAdj(15)">+</button>
-        </div>
-      </div>
-    </div>
-    <div class="tmr-btns">
-      <button class="t-btn t-go" id="rst-go" onclick="rstToggle()">▶ Avvia</button>
-      <button class="t-btn t-stop" onclick="rstReset()">■ Reset</button>
-    </div>
-  </div>
-
-  <!-- STRETCHING -->
-  <div id="pnl-stretch" style="display:none">
-    <div class="str-bar">
-      <span class="str-bar-label">⏱ Tempo totale rimanente</span>
-      <span class="str-bar-time" id="str-total">10:00</span>
-    </div>
-    <div class="str-main">
-      <div class="str-phase" id="str-phase">DISTENDI</div>
-      <div class="str-ex" id="str-ex">1 / 6</div>
-      <div class="str-cnt c-teal" id="str-cnt">40</div>
-      <div class="prog"><div class="prog-fill pf-t" id="str-prog" style="width:100%"></div></div>
-      <div class="str-next" id="str-next">Prossimo: Anche</div>
-    </div>
-    <div class="str-dots" id="str-dots"></div>
-    <div class="tmr-btns">
-      <button class="t-btn t-go" id="str-go" onclick="strToggle()">▶ Avvia</button>
-      <button class="t-btn t-stop" onclick="strReset()">■ Reset</button>
-    </div>
-  </div>
-</div>
-
-<nav class="nav">
-  <button class="nav-btn on" onclick="showScr('workout')"><span class="ico">🏋️</span>Workout</button>
-  <button class="nav-btn"    onclick="showScr('timer')"><span class="ico">⏱</span>Timer</button>
-</nav>
 
 <!-- Fullscreen rest-done flash -->
 <div id="rdf" style="display:none;position:fixed;inset:0;background:#16a34a;z-index:900;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px">
@@ -597,24 +389,12 @@ const PROG = {
   ]
 };
 
-// Stretching exercises
-const STR_EX = ['Caviglia', 'Anche', 'Torace', 'Spalle', 'Gomiti', 'Polsi'];
-const STR_HOLD = 40;
-const STR_TRANS = 5;
-const STR_TOTAL = 600; // 10 min
-
 // ─── STATE ───────────────────────────────────────────────────────────────────
 let curDay = 0, curWeek = 0;
 let done = {};
 let custom = [[],[],[]];
 const TODAY = new Date().toISOString().split('T')[0];
-
-// Timer states
-let amr = {min:10, rem:600, tot:600, running:false, iv:null, rounds:0};
-let tab = {exPerRound:5, exDuration:30, restEx:10, rounds:5, restRound:90, curRound:1, curEx:1, phase:'work', rem:30, running:false, iv:null};
-let rst = {sec:120, rem:120, tot:120, running:false, iv:null};
-let str = {running:false, iv:null, exIdx:0, phase:'hold', rem:STR_HOLD, totRem:STR_TOTAL};
-let rp  = {rem:0, iv:null};
+let rp = {rem:0, iv:null};
 
 // ─── INIT ────────────────────────────────────────────────────────────────────
 function _dayByDate(){
@@ -637,10 +417,6 @@ function _dayByDate(){
   document.querySelectorAll('.day-tab').forEach((t,i)=>t.classList.toggle('on',i===curDay));
 
   renderWorkout();
-  renderCustomList();
-  tabReset(); amrRefUI(); rstRefUI(); strRefUI();
-  buildStrDots();
-  setTMode('amrap'); // inizializza visibilità pannelli timer
   _reqNotif();
 })();
 
@@ -664,12 +440,6 @@ function resolveCircuit(c){
 }
 
 // ─── NAVIGATION ──────────────────────────────────────────────────────────────
-function showScr(s){
-  ['workout','timer'].forEach((id,i)=>{
-    document.getElementById('scr-'+id).classList.toggle('on',id===s);
-    document.querySelectorAll('.nav-btn')[i].classList.toggle('on',id===s);
-  });
-}
 function setDay(i){
   curDay=i;
   document.querySelectorAll('.day-tab').forEach((t,j)=>t.classList.toggle('on',i===j));
@@ -680,13 +450,6 @@ function cycleWeek(){
   document.getElementById('wkDisplay').textContent='Settimana '+(curWeek+1);
   renderWorkout();
 }
-function setTMode(m){
-  ['amrap','tabata','rest','stretch'].forEach((id,i)=>{
-    document.getElementById('pnl-'+id).style.display=id===m?'':'none';
-    document.querySelectorAll('.tmr-tab')[i].classList.toggle('on',id===m);
-  });
-}
-
 // ─── RENDER WORKOUT ──────────────────────────────────────────────────────────
 function renderWorkout(){
   const day = PROG.days[curDay];
@@ -814,7 +577,6 @@ function renderCircuit(circ, dayId, ci=0){
   const rndKey = dayId+'_circ_rnd_'+ci;
   const rounds = done[rndKey]||0;
   const isAmrap = circ.type==='amrap';
-  const btnLabel = isAmrap ? `⏱ Avvia AMRAP ${circ.amrMin} min` : `🔥 Avvia Tabata ${circ.tabWork}″/${circ.tabRest}″`;
 
   const exRows = circ.ex.map((e,i)=>{
     const kgTag = e.kg ? `<span class="circ-kg-tag">${e.kg}</span>` : '';
@@ -839,9 +601,6 @@ function renderCircuit(circ, dayId, ci=0){
     </div>` : '';
 
   return `<div class="circuit-card">
-    <button class="circ-launch" onclick="launchCircuit(${curDay},${ci})">
-      ${btnLabel}
-    </button>
     <ul class="circ-ex-list">${exRows}</ul>
     ${roundsRow}
   </div>`;
@@ -1003,195 +762,6 @@ function _startSilentLoop(){
 async function _reqNotif(){ try{ if('Notification'in window&&Notification.permission==='default') await Notification.requestPermission(); }catch(e){} }
 function notify(title,body){ try{ if('Notification'in window&&Notification.permission==='granted') new Notification(title,{body,silent:true}); }catch(e){} }
 
-// ─── LAUNCH CIRCUIT ──────────────────────────────────────────────────────────
-function launchCircuit(di, ci){
-  ci = ci||0;
-  const c = resolveCircuit(PROG.days[di].circuits[ci]);
-  if(c.type==='amrap'){
-    amr.min=c.amrMin; amrReset();
-    showScr('timer'); setTMode('amrap');
-  } else {
-    tab.exPerRound = c.ex.length;
-    tab.exDuration = c.tabWork  || 30;
-    tab.restEx     = c.tabRest  || 10;
-    tab.rounds     = c.tabRounds || 4;
-    tab.restRound  = c.tabRestRound || 60;
-    tabReset();
-    showScr('timer'); setTMode('tabata');
-  }
-}
-
-// ─── AMRAP TIMER ─────────────────────────────────────────────────────────────
-function amrAdj(d){ if(amr.running)return; amr.min=Math.max(1,Math.min(60,amr.min+d)); amr.rem=amr.min*60; amr.tot=amr.rem; document.getElementById('amr-min').textContent=amr.min; amrRefUI(); }
-function amrToggle(){
-  if(amr.running){ clearInterval(amr.iv); amr.running=false; document.getElementById('amr-go').textContent='▶ Riprendi'; }
-  else {
-    if(amr.rem<=0){amr.rem=amr.min*60;amr.tot=amr.rem;}
-    amr.running=true; document.getElementById('amr-go').textContent='⏸ Pausa';
-    amr.iv=setInterval(()=>{amr.rem--;amrRefUI();if(amr.rem<=0){clearInterval(amr.iv);amr.running=false;document.getElementById('amr-go').textContent='▶ Avvia';buzz();notify('⏱ AMRAP terminato!',`${amr.min} minuti completati — segnare i round!`);}},1000);
-  }
-}
-function amrReset(){ clearInterval(amr.iv);amr.running=false;amr.rem=amr.min*60;amr.tot=amr.rem;amr.rounds=0;document.getElementById('amr-go').textContent='▶ Avvia';amrRefUI(); }
-function amrRndAdj(d){ amr.rounds=Math.max(0,amr.rounds+d); document.getElementById('amr-rnd-n').textContent=amr.rounds; }
-function amrRefUI(){
-  const r=amr.rem,m=Math.floor(r/60),s=r%60;
-  const el=document.getElementById('amr-disp');
-  el.textContent=m+':'+String(s).padStart(2,'0');
-  document.getElementById('amr-prog').style.width=(amr.tot>0?(r/amr.tot*100):0)+'%';
-  el.className='tmr-big '+(r<=10?'c-warn':'c-green');
-  document.getElementById('amr-rnd-n').textContent=amr.rounds;
-}
-
-// ─── TABATA TIMER ────────────────────────────────────────────────────────────
-function tabAdj(f,d){
-  if(tab.running)return;
-  if(f==='e') tab.exPerRound=Math.max(1,tab.exPerRound+d);
-  else if(f==='w') tab.exDuration=Math.max(5,tab.exDuration+d);
-  else if(f==='rx') tab.restEx=Math.max(0,tab.restEx+d);
-  else if(f==='n') tab.rounds=Math.max(1,tab.rounds+d);
-  else if(f==='rr') tab.restRound=Math.max(0,tab.restRound+d);
-  tabReset();
-}
-function tabToggle(){
-  if(tab.running){clearInterval(tab.iv);tab.running=false;document.getElementById('tab-go').textContent='▶ Riprendi';}
-  else{tab.running=true;document.getElementById('tab-go').textContent='⏸ Pausa';tab.iv=setInterval(tabTick,1000);}
-}
-function tabTick(){
-  tab.rem--;
-  if(tab.rem<0){
-    buzz();
-    if(tab.phase==='work'){
-      if(tab.curEx<tab.exPerRound){
-        // next exercise in same round
-        tab.curEx++; tab.phase='restEx'; tab.rem=tab.restEx;
-        notify('💤 Riposo', tab.restEx+'″ · poi Es. '+tab.curEx+'/'+tab.exPerRound);
-      } else if(tab.curRound<tab.rounds){
-        // last ex of round → round rest
-        tab.curRound++; tab.curEx=1; tab.phase='restRound'; tab.rem=tab.restRound;
-        notify('⏸ Pausa round', tab.restRound+'″ · Round '+(tab.curRound-1)+'/'+tab.rounds+' completato');
-      } else {
-        // all done
-        clearInterval(tab.iv); tab.running=false;
-        document.getElementById('tab-go').textContent='▶ Avvia';
-        document.getElementById('tab-phase').textContent='🎉 COMPLETATO!';
-        notify('🔥 Tabata completato!', 'Ottimo lavoro — '+tab.rounds+' round finiti!'); return;
-      }
-    } else if(tab.phase==='restEx'){
-      tab.phase='work'; tab.rem=tab.exDuration;
-      notify('🔥 Vai!', 'Es. '+tab.curEx+'/'+tab.exPerRound+' · Round '+tab.curRound+'/'+tab.rounds);
-    } else if(tab.phase==='restRound'){
-      tab.phase='work'; tab.rem=tab.exDuration;
-      notify('🔥 Round '+tab.curRound+'!', 'Es. 1/'+tab.exPerRound+' · Dai tutto!');
-    }
-  }
-  tabRefUI();
-}
-function tabReset(){
-  clearInterval(tab.iv); tab.running=false;
-  tab.curRound=1; tab.curEx=1; tab.phase='work'; tab.rem=tab.exDuration;
-  document.getElementById('tab-ev').textContent=tab.exPerRound;
-  document.getElementById('tab-wv').textContent=tab.exDuration;
-  document.getElementById('tab-rxv').textContent=tab.restEx;
-  document.getElementById('tab-nv').textContent=tab.rounds;
-  document.getElementById('tab-rrv').textContent=tab.restRound;
-  document.getElementById('tab-go').textContent='▶ Avvia';
-  tabRefUI();
-}
-function tabRefUI(){
-  const r=tab.rem, el=document.getElementById('tab-disp');
-  el.textContent=String(Math.floor(r/60)).padStart(2,'0')+':'+String(r%60).padStart(2,'0');
-  let phaseText,colorClass,progClass,totSec;
-  if(tab.phase==='work'){phaseText='🔥 LAVORO';colorClass='c-green';progClass='pf-g';totSec=tab.exDuration;}
-  else if(tab.phase==='restEx'){phaseText='💤 RIPOSO';colorClass='c-blue';progClass='pf-b';totSec=tab.restEx;}
-  else{phaseText='⏸ PAUSA ROUND';colorClass='c-warn';progClass='pf-p';totSec=tab.restRound;}
-  document.getElementById('tab-phase').textContent=phaseText;
-  el.className='tmr-big '+colorClass;
-  document.getElementById('tab-prog').className='prog-fill '+progClass;
-  document.getElementById('tab-prog').style.width=(totSec>0?(r/totSec*100):0)+'%';
-  document.getElementById('tab-cur-r').textContent=tab.curRound;
-  document.getElementById('tab-tot-r').textContent=tab.rounds;
-  document.getElementById('tab-cur-e').textContent=tab.curEx;
-  document.getElementById('tab-tot-e').textContent=tab.exPerRound;
-}
-
-// ─── REST TIMER ──────────────────────────────────────────────────────────────
-function rstAdj(d){ if(rst.running)return; rst.sec=Math.max(15,rst.sec+d); rst.rem=rst.sec; rst.tot=rst.sec; document.getElementById('rst-val').textContent=rst.sec; rstRefUI(); }
-function rstToggle(){
-  if(rst.running){clearInterval(rst.iv);rst.running=false;document.getElementById('rst-go').textContent='▶ Riprendi';}
-  else{if(rst.rem<=0){rst.rem=rst.sec;rst.tot=rst.sec;}rst.running=true;document.getElementById('rst-go').textContent='⏸ Pausa';rst.iv=setInterval(()=>{rst.rem--;rstRefUI();if(rst.rem<=0){clearInterval(rst.iv);rst.running=false;document.getElementById('rst-go').textContent='▶ Avvia';buzz();notify('⏱ Recupero terminato!','Pronto per la prossima serie!');}},1000);}
-}
-function rstReset(){ clearInterval(rst.iv);rst.running=false;rst.rem=rst.sec;rst.tot=rst.sec;document.getElementById('rst-go').textContent='▶ Avvia';rstRefUI(); }
-function rstRefUI(){
-  const r=rst.rem,el=document.getElementById('rst-disp');
-  el.textContent=String(Math.floor(r/60)).padStart(2,'0')+':'+String(r%60).padStart(2,'0');
-  document.getElementById('rst-prog').style.width=(rst.tot>0?(r/rst.tot*100):0)+'%';
-  el.className='tmr-big '+(r<=10?'c-warn':'c-blue');
-}
-
-// ─── STRETCHING TIMER ────────────────────────────────────────────────────────
-function buildStrDots(){
-  const c=document.getElementById('str-dots');
-  c.innerHTML=STR_EX.map((_,i)=>`<div class="str-dot${i===0?' on':''}" id="sd${i}"></div>`).join('');
-}
-function strToggle(){
-  if(str.running){clearInterval(str.iv);str.running=false;document.getElementById('str-go').textContent='▶ Riprendi';}
-  else{str.running=true;document.getElementById('str-go').textContent='⏸ Pausa';str.iv=setInterval(strTick,1000);}
-}
-function strTick(){
-  str.totRem--;
-  str.rem--;
-  if(str.totRem<=0){clearInterval(str.iv);str.running=false;document.getElementById('str-go').textContent='▶ Avvia';document.getElementById('str-phase').textContent='🎉 COMPLETATO!';document.getElementById('str-cnt').textContent='✓';buzz();notify('🧘 Stretching','Completato!');return;}
-  if(str.rem<0){
-    if(str.phase==='hold'){
-      str.phase='trans';str.rem=STR_TRANS;beepPhase();
-      const next=STR_EX[(str.exIdx+1)%STR_EX.length];
-      notify('➡️ Cambia posizione!','Prossimo: '+next);
-    } else {
-      str.exIdx=(str.exIdx+1)%STR_EX.length;str.phase='hold';str.rem=STR_HOLD;beepPhase();
-      notify('🧘 Posizione '+(str.exIdx+1)+'/'+STR_EX.length,STR_EX[str.exIdx]);
-    }
-  } else if(str.rem<=3&&str.rem>0){
-    beepTick();
-  }
-  strRefUI();
-}
-function strReset(){ clearInterval(str.iv);str.running=false;str.exIdx=0;str.phase='hold';str.rem=STR_HOLD;str.totRem=STR_TOTAL;document.getElementById('str-go').textContent='▶ Avvia';strRefUI(); }
-function strRefUI(){
-  const isHold=str.phase==='hold';
-  document.getElementById('str-phase').textContent=isHold?'DISTENDI 🧘':'CAMBIA POSIZIONE ➡️';
-  document.getElementById('str-ex').textContent=`${str.exIdx+1} / ${STR_EX.length}`;
-  document.getElementById('str-cnt').textContent=str.rem;
-  const tot=isHold?STR_HOLD:STR_TRANS;
-  document.getElementById('str-prog').style.width=(str.rem/tot*100)+'%';
-  document.getElementById('str-prog').className='prog-fill '+(isHold?'pf-t':'pf-b');
-  const nextIdx=(str.exIdx+(isHold?1:0))%STR_EX.length;
-  document.getElementById('str-next').textContent=isHold?'Prossimo: '+STR_EX[(str.exIdx+1)%STR_EX.length]:'';
-  // Total time
-  const tm=Math.floor(str.totRem/60),ts=str.totRem%60;
-  document.getElementById('str-total').textContent=tm+':'+String(ts).padStart(2,'0');
-  // Dots
-  STR_EX.forEach((_,i)=>{ const d=document.getElementById('sd'+i); if(d) d.className='str-dot'+(i===str.exIdx?' on':''); });
-}
-
-// ─── ADD EXERCISE ─────────────────────────────────────────────────────────────
-function addEx(){
-  const name=document.getElementById('add-name').value.trim();
-  if(!name){alert('Inserisci il nome');return;}
-  const di=parseInt(document.getElementById('add-day').value);
-  const sets=parseInt(document.getElementById('add-sets').value)||3;
-  const reps=document.getElementById('add-reps').value.trim();
-  const kg=document.getElementById('add-kg').value.trim();
-  const rec=document.getElementById('add-rest').value.trim();
-  const note=document.getElementById('add-note').value.trim();
-  const ex={id:'cx_'+Date.now(),name,sets,barType:'dumbbell',wk:[{groups:[{n:sets,r:reps,kg:kg||''}],rec,note}],note};
-  custom[di].push(ex);
-  localStorage.setItem('lw_custom',JSON.stringify(custom));
-  ['add-name','add-reps','add-kg','add-rest','add-note'].forEach(id=>document.getElementById(id).value='');
-  renderCustomList(); renderWorkout();
-  const btn=document.getElementById('save-btn'); btn.textContent='✓ Aggiunto!'; btn.style.background='var(--green)';
-  setTimeout(()=>{btn.textContent='+ Aggiungi Esercizio';btn.style.background='';},1600);
-}
-function delEx(di,ei){ custom[di].splice(ei,1); localStorage.setItem('lw_custom',JSON.stringify(custom)); renderCustomList(); renderWorkout(); }
 // ─── WAKE LOCK ───────────────────────────────────────────────────────────────
 let _wakeLock = null;
 async function _acquireWakeLock(){
@@ -1222,44 +792,7 @@ document.addEventListener('visibilitychange',()=>{
   }
 });
 function _advTimers(secs){
-  if(amr.running){ amr.rem=Math.max(0,amr.rem-secs); if(amr.rem<=0){clearInterval(amr.iv);amr.running=false;document.getElementById('amr-go').textContent='▶ Avvia';buzz();} amrRefUI(); }
-  if(tab.running){
-    let rem=secs;
-    while(rem>0){
-      const step=Math.min(rem,tab.rem+1); rem-=step; tab.rem-=step;
-      if(tab.rem<0){
-        if(tab.phase==='work'){
-          if(tab.curEx<tab.exPerRound){tab.curEx++;tab.phase='restEx';tab.rem=tab.restEx;}
-          else if(tab.curRound<tab.rounds){tab.curRound++;tab.curEx=1;tab.phase='restRound';tab.rem=tab.restRound;}
-          else{clearInterval(tab.iv);tab.running=false;rem=0;}
-        } else if(tab.phase==='restEx'){tab.phase='work';tab.rem=tab.exDuration;}
-        else if(tab.phase==='restRound'){tab.phase='work';tab.rem=tab.exDuration;}
-      }
-    }
-    tabRefUI();
-  }
-  if(rst.running){ rst.rem=Math.max(0,rst.rem-secs); if(rst.rem<=0){clearInterval(rst.iv);rst.running=false;document.getElementById('rst-go').textContent='▶ Avvia';buzz();} rstRefUI(); }
-  if(str.running){
-    let rem=secs;
-    while(rem>0&&str.totRem>0){
-      const step=Math.min(rem,Math.min(str.rem+1,str.totRem)); rem-=step; str.rem-=step; str.totRem=Math.max(0,str.totRem-step);
-      if(str.rem<0&&str.totRem>0){
-        if(str.phase==='hold'){str.phase='trans';str.rem=STR_TRANS;}
-        else{str.exIdx=(str.exIdx+1)%STR_EX.length;str.phase='hold';str.rem=STR_HOLD;}
-      }
-    }
-    if(str.totRem<=0){clearInterval(str.iv);str.running=false;}
-    strRefUI();
-  }
   if(rp.iv&&rp.rem>0){ rp.rem=Math.max(0,rp.rem-secs); if(rp.rem<=0){rpSkip();showRestDoneFlash();} }
-}
-
-function renderCustomList(){
-  const all=[]; custom.forEach((d,di)=>d.forEach((e,ei)=>all.push({e,di,ei})));
-  const el=document.getElementById('custom-list');
-  if(!all.length){el.innerHTML='';return;}
-  el.innerHTML=`<div class="sl">Esercizi personalizzati</div>`+
-    all.map(({e,di,ei})=>`<div class="ci"><div class="ci-info"><div class="ci-name">${e.name}</div><div class="ci-meta">Giorno ${di+1} · ${e.sets||3} serie</div></div><button class="ci-del" onclick="delEx(${di},${ei})">🗑</button></div>`).join('');
 }
 </script>
 </body>
