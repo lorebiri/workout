@@ -75,6 +75,7 @@ body{
 /* ── Plates ── */
 .plates-row{display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin:5px 0 8px}
 .p-pill{border-radius:5px;padding:3px 7px;font-size:11px;font-weight:700;letter-spacing:.2px}
+.p-25kg{background:#ea580c;color:#fff}
 .p-20{background:#dc2626;color:#fff}
 .p-10{background:#16a34a;color:#fff}
 .p-5{background:#e2e8f0;color:#0f172a}
@@ -86,10 +87,10 @@ body{
 
 /* ── Set circles ── */
 .sets-row{display:flex;align-items:center;gap:7px}
-.set-circles{display:flex;gap:5px;flex-wrap:wrap;flex:1}
-.set-c{width:54px;height:54px;border-radius:50%;border:2px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--text3);transition:all .18s;flex-shrink:0;user-select:none}
+.set-circles{display:flex;gap:6px;flex-wrap:nowrap;flex:1;min-width:0}
+.set-c{flex:1;min-width:0;aspect-ratio:1;max-height:76px;border-radius:50%;border:2.5px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:var(--text3);transition:background .15s,border-color .15s,transform .1s;user-select:none;touch-action:manipulation;-webkit-touch-callout:none}
 .set-c.done{background:var(--green);border-color:var(--green);color:#0a0a0a}
-.set-c:active{transform:scale(.86)}
+.set-c:active{transform:scale(.88)}
 .btn-rst{background:none;border:1px solid var(--border);border-radius:7px;color:var(--text3);padding:5px 9px;font-size:12px;cursor:pointer;flex-shrink:0}
 
 .sg-divider{height:1px;background:var(--border);margin:10px 0}
@@ -191,6 +192,26 @@ body{
 .pr-inp{background:transparent;border:none;border-bottom:1px dashed var(--border);color:var(--text2);font-size:12px;width:100%;padding:3px 2px;outline:none;font-family:inherit}
 .pr-inp::placeholder{color:var(--text3)}
 ::-webkit-scrollbar{display:none}
+
+/* ── RPE / RIR prompt sheet ── */
+#rpe-sheet{display:none;position:fixed;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 26px);max-width:454px;background:#111827;border:1px solid #1e3a5f;border-radius:18px;padding:18px 14px 14px;z-index:210;box-shadow:0 -4px 40px #000d}
+.rpe-ex{font-size:14px;font-weight:700;text-align:center;color:var(--text);margin-bottom:4px}
+.rpe-q{font-size:12px;color:var(--text3);text-align:center;margin-bottom:14px}
+.rpe-btns{display:flex;gap:7px;margin-bottom:10px}
+.rpe-btn{flex:1;padding:12px 4px 8px;background:var(--card);border:1.5px solid var(--border);border-radius:12px;color:var(--text);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:transform .1s,background .1s;-webkit-tap-highlight-color:transparent}
+.rpe-btn:active{transform:scale(.9)}
+.rpe-btn span{font-size:22px;font-weight:800;line-height:1}
+.rpe-btn small{font-size:9px;font-weight:600;letter-spacing:.3px;opacity:.75}
+.rpe-skip{width:100%;background:none;border:none;color:var(--text3);font-size:12px;padding:6px;cursor:pointer;text-align:center}
+
+/* ── Coach badge ── */
+.coach-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;border-radius:7px;padding:5px 9px;margin-top:8px}
+.coach-up{background:#16a34a10;color:#4ade80;border:1px solid #22c55e20}
+.coach-warn{background:#dc262610;color:#f87171;border:1px solid #dc262625}
+
+/* ── RIR history dots ── */
+.rir-dots{display:flex;gap:4px;margin-top:5px;padding-left:2px}
+.rir-dot{width:7px;height:7px;border-radius:50%;background:var(--border)}
 </style>
 </head>
 <body>
@@ -350,37 +371,9 @@ body{
   </div>
 </div>
 
-<!-- ── ADD ── -->
-<div class="scr" id="scr-add">
-  <div class="add-form">
-    <div class="fg">
-      <label class="fl">Nome esercizio</label>
-      <input class="fi" id="add-name" placeholder="Es. Curl bilanciere" type="text">
-    </div>
-    <div class="frow">
-      <div class="fg"><label class="fl">Serie</label><input class="fi" id="add-sets" type="number" min="1" max="20" value="3"></div>
-      <div class="fg"><label class="fl">Rep</label><input class="fi" id="add-reps" placeholder="10" type="text"></div>
-      <div class="fg"><label class="fl">Kg</label><input class="fi" id="add-kg" placeholder="—" type="text"></div>
-    </div>
-    <div class="frow">
-      <div class="fg"><label class="fl">Recupero</label><input class="fi" id="add-rest" placeholder="2'" type="text"></div>
-      <div class="fg">
-        <label class="fl">Giorno</label>
-        <select class="fsel" id="add-day">
-          <option value="0">Giorno 1</option><option value="1">Giorno 2</option><option value="2">Giorno 3</option>
-        </select>
-      </div>
-    </div>
-    <div class="fg"><label class="fl">Note</label><input class="fi" id="add-note" placeholder="Note..." type="text"></div>
-    <button class="btn-save" id="save-btn" onclick="addEx()">+ Aggiungi Esercizio</button>
-  </div>
-  <div id="custom-list"></div>
-</div>
-
 <nav class="nav">
   <button class="nav-btn on" onclick="showScr('workout')"><span class="ico">🏋️</span>Workout</button>
   <button class="nav-btn"    onclick="showScr('timer')"><span class="ico">⏱</span>Timer</button>
-  <button class="nav-btn"    onclick="showScr('add')"><span class="ico">➕</span>Esercizi</button>
 </nav>
 
 <!-- Fullscreen rest-done flash -->
@@ -397,18 +390,28 @@ body{
   <button class="rp-skip" onclick="rpSkip()">Salta</button>
 </div>
 
+<!-- RPE / RIR prompt -->
+<div id="rpe-sheet">
+  <div class="rpe-ex" id="rpe-ex"></div>
+  <div class="rpe-q" id="rpe-q">Quante reps in più avresti potuto fare?</div>
+  <div class="rpe-btns" id="rpe-btns"></div>
+  <button class="rpe-skip" onclick="logRir(null)">Salta →</button>
+</div>
+
 <script>
 // ─── PLATE CALCULATOR ────────────────────────────────────────────────────────
 const PLATES_AVAIL = [20, 10, 5, 2.5, 1.25];
-const P_CLASS = {20:'p-20', 10:'p-10', 5:'p-5', 2.5:'p-25', 1.25:'p-125'};
-const P_LABEL = {20:'20', 10:'10', 5:'5', 2.5:'2.5', 1.25:'1.25'};
+const PLATES_TRAP  = [25, 20, 10, 5];
+const P_CLASS = {25:'p-25kg', 20:'p-20', 10:'p-10', 5:'p-5', 2.5:'p-25', 1.25:'p-125'};
+const P_LABEL = {25:'25', 20:'20', 10:'10', 5:'5', 2.5:'2.5', 1.25:'1.25'};
 
-function calcPlates(totalKg, barKg) {
+function calcPlates(totalKg, barKg, platesAvail) {
+  platesAvail = platesAvail || PLATES_AVAIL;
   const perSide = (totalKg - barKg) / 2;
   if (perSide <= 0) return { plates: [], actual: barKg, perSide: 0 };
   const result = [];
   let rem = Math.round(perSide * 100) / 100;
-  for (const p of PLATES_AVAIL) {
+  for (const p of platesAvail) {
     const n = Math.floor(rem / p + 0.001);
     if (n > 0) { result.push({kg: p, n}); rem = Math.round((rem - n * p) * 100) / 100; }
   }
@@ -416,7 +419,7 @@ function calcPlates(totalKg, barKg) {
   return { plates: result, actual: barKg + ps * 2, perSide: ps };
 }
 
-function plateHtml(kg, barKg) {
+function plateHtml(kg, barKg, platesAvail) {
   if (typeof kg !== 'number') {
     // Machine or dumbbell: just show the value
     return `<div class="plates-row"><span class="p-machine">⚙️ ${kg}</span></div>`;
@@ -424,7 +427,7 @@ function plateHtml(kg, barKg) {
   if (kg <= barKg) {
     return `<div class="plates-row"><span class="p-machine">Solo bilanciere ${barKg} kg</span></div>`;
   }
-  const { plates, actual } = calcPlates(kg, barKg);
+  const { plates, actual } = calcPlates(kg, barKg, platesAvail);
   if (plates.length === 0) return '';
   const pills = plates.map(p => {
     const lbl = p.n > 1 ? `${p.n}×${P_LABEL[p.kg]}` : P_LABEL[p.kg];
@@ -453,10 +456,10 @@ const PROG = {
           ]},
         { id:'dip1', emoji:'💪', name:'Dip Macchinario', barType:'machine',
           wk:[
-            {groups:[{n:4,r:'4',kg:'-20+5'}]},
-            {groups:[{n:4,r:'5',kg:'-20+5'}]},
-            {groups:[{n:5,r:'6',kg:'-20+5'}]},
-            {groups:[{n:4,r:'7',kg:'-20+5'}]},
+            {groups:[{n:4,r:'4',kg:'-20+5'}], rec:"2'"},
+            {groups:[{n:4,r:'5',kg:'-20+5'}], rec:"2'"},
+            {groups:[{n:5,r:'6',kg:'-20+5'}], rec:"2'"},
+            {groups:[{n:4,r:'7',kg:'-20+5'}], rec:"2'"},
           ]},
         { id:'squat1', emoji:'🦵', name:'Squat', barType:'bar', barKg:20,
           wk:[
@@ -564,10 +567,10 @@ const PROG = {
           ]},
         { id:'dip3', emoji:'💪', name:'Dip Macchinario', barType:'machine',
           wk:[
-            {groups:[{n:3,r:'7',kg:'-27+5'}]},
-            {groups:[{n:3,r:'8',kg:'-27+5'}]},
-            {groups:[{n:3,r:'9',kg:'-27+5'}]},
-            {groups:[{n:3,r:'10',kg:'-27+5'}]},
+            {groups:[{n:3,r:'7',kg:'-27+5'}], rec:"2'"},
+            {groups:[{n:3,r:'8',kg:'-27+5'}], rec:"2'"},
+            {groups:[{n:3,r:'9',kg:'-27+5'}], rec:"2'"},
+            {groups:[{n:3,r:'10',kg:'-27+5'}], rec:"2'"},
           ]},
       ],
       circuits: [
@@ -637,6 +640,7 @@ function _dayByDate(){
   renderCustomList();
   tabReset(); amrRefUI(); rstRefUI(); strRefUI();
   buildStrDots();
+  setTMode('amrap'); // inizializza visibilità pannelli timer
   _reqNotif();
 })();
 
@@ -661,11 +665,10 @@ function resolveCircuit(c){
 
 // ─── NAVIGATION ──────────────────────────────────────────────────────────────
 function showScr(s){
-  ['workout','timer','add'].forEach((id,i)=>{
+  ['workout','timer'].forEach((id,i)=>{
     document.getElementById('scr-'+id).classList.toggle('on',id===s);
     document.querySelectorAll('.nav-btn')[i].classList.toggle('on',id===s);
   });
-  if(s==='add') renderCustomList();
 }
 function setDay(i){
   curDay=i;
@@ -770,11 +773,13 @@ function renderMainEx(ex, dayId){
           ${kgDisplay}
           ${refBadge}${backoffBadge}
         </div>
-        ${isBar ? plateHtml(displayKg, barKg) : (ex.barType==='machine' ? `<div class="plates-row"><span class="p-machine">⚙️ ${g.kg}</span></div>` : '')}
+        ${isBar ? plateHtml(displayKg, barKg, ex.barType==='trapbar' ? PLATES_TRAP : PLATES_AVAIL) : (ex.barType==='machine' ? `<div class="plates-row"><span class="p-machine">⚙️ ${g.kg}</span></div>` : '')}
         <div class="sets-row">
           <div class="set-circles">${circles}</div>
-          <button class="btn-rst" onclick="resetGroup('${gKey}')">↺</button>
+          <button class="btn-rst" onclick="resetGroup('${gKey}',${g.n})">↺</button>
         </div>
+        ${getRirDots(gKey, wi, g.n)}
+        ${(()=>{const s=getCoachSuggestion(gKey,wi,g.n);return s?`<div class="coach-badge coach-${s.type}">${s.text}</div>`:''})()}
       </div>`;
 
     if(gi < w.groups.length-1) groupsHtml += '<div class="sg-divider"></div>';
@@ -842,16 +847,98 @@ function renderCircuit(circ, dayId, ci=0){
   </div>`;
 }
 
+// ─── RPE / RIR TRACKING ──────────────────────────────────────────────────────
+// RIR (Reps In Reserve): 0=nessuna · 1=1 in più · 2=2 in più · 3=3 in più · 4=4+
+// RPE = 10 − RIR
+const RIR_CFG = [
+  {v:0, label:'0', sub:'RPE 10', color:'#dc2626'},
+  {v:1, label:'1', sub:'RPE 9',  color:'#f97316'},
+  {v:2, label:'2', sub:'RPE 8',  color:'#22c55e'},
+  {v:3, label:'3', sub:'RPE 7',  color:'#14b8a6'},
+  {v:4, label:'4+',sub:'≤RPE 6', color:'#3b82f6'},
+];
+let _rirCtx = null; // {gKey, wi, setIdx, pendingRest}
+
+function saveRir(gKey, wi, setIdx, rir){
+  try{ localStorage.setItem('lw_rir_'+gKey+'_w'+wi+'_s'+setIdx, rir); }catch(e){}
+}
+function getRirValues(gKey, wi, n){
+  const vals=[];
+  for(let i=0;i<n;i++){
+    const v=parseInt(localStorage.getItem('lw_rir_'+gKey+'_w'+wi+'_s'+i));
+    if(!isNaN(v)) vals.push(v);
+  }
+  return vals;
+}
+function getCoachSuggestion(gKey, wi, n){
+  const vals=getRirValues(gKey, wi, n);
+  if(vals.length < Math.max(2, Math.ceil(n/2))) return null; // dati insufficienti
+  const avgRir=vals.reduce((a,b)=>a+b,0)/vals.length;
+  if(avgRir >= 3) return {type:'up',  text:'📈 Considera +2.5 kg la prossima settimana'};
+  if(avgRir <= 0.3) return {type:'warn', text:'⚠️ Carico massimale — monitora il recupero'};
+  return null;
+}
+function getRirDots(gKey, wi, n){
+  const vals=getRirValues(gKey, wi, n);
+  if(!vals.length) return '';
+  const dots=Array.from({length:n},(_,i)=>{
+    const v=parseInt(localStorage.getItem('lw_rir_'+gKey+'_w'+wi+'_s'+i));
+    const col=isNaN(v)?'var(--border)':RIR_CFG[Math.min(v,4)].color;
+    const title=isNaN(v)?'':'RIR '+v+' · RPE '+(10-v);
+    return `<div class="rir-dot" style="background:${col}" title="${title}"></div>`;
+  }).join('');
+  return `<div class="rir-dots">${dots}</div>`;
+}
+
+function showRpePrompt(gKey, wi, setIdx, exName, setNum, tot, pendingRest){
+  _rirCtx = {gKey, wi, setIdx, pendingRest: pendingRest||null};
+  document.getElementById('rpe-ex').textContent = '💪 '+exName+' — Serie '+setNum+'/'+tot;
+  document.getElementById('rpe-btns').innerHTML = RIR_CFG.map(r=>
+    `<button class="rpe-btn" style="border-color:${r.color}35" onclick="logRir(${r.v})">
+       <span style="color:${r.color}">${r.label}</span>
+       <small style="color:${r.color}">${r.sub}</small>
+     </button>`
+  ).join('');
+  document.getElementById('rpe-sheet').style.display='block';
+}
+function logRir(rir){ // rir=null → skip
+  const sheet=document.getElementById('rpe-sheet');
+  if(_rirCtx){
+    if(rir !== null) saveRir(_rirCtx.gKey, _rirCtx.wi, _rirCtx.setIdx, rir);
+    const pr=_rirCtx.pendingRest;
+    _rirCtx=null;
+    sheet.style.display='none';
+    renderWorkout();
+    if(pr && pr.secs>0) showRP(pr.secs, pr.name, pr.doneN, pr.tot);
+  } else {
+    sheet.style.display='none'; // safety: chiude sempre il foglio
+  }
+}
+
 // ─── SET TRACKING ─────────────────────────────────────────────────────────────
+let _lastTap = 0;
 function tapSet(key, tot, recStr, exName, idx){
+  const now = Date.now();
+  if(now - _lastTap < 350) return; // debounce: ignora doppio tap accidentale
+  _lastTap = now;
   const cur = done[key]||0;
   const next = idx<cur ? idx : Math.min(idx+1,tot);
   done[key]=next;
   saveDone();
   renderWorkout();
-  if(next>cur && next<tot && recStr){ const s=parseRec(recStr); if(s>0) showRP(s,exName,next,tot); }
+  if(next > cur){
+    // Timer parte dopo OGNI serie completata (inclusa l'ultima)
+    const secs = recStr ? parseRec(recStr) : 0;
+    const pendingRest = secs > 0 ? {secs, name:exName, doneN:next, tot} : null;
+    setTimeout(()=>showRpePrompt(key, curWeek, next-1, exName, next, tot, pendingRest), 160);
+  }
 }
-function resetGroup(key){ done[key]=0; saveDone(); renderWorkout(); rpSkip(); }
+function resetGroup(key, n){
+  done[key]=0; saveDone();
+  // Cancella anche i dati RIR per questo gruppo/settimana
+  if(n){ for(let i=0;i<n;i++) try{localStorage.removeItem('lw_rir_'+key+'_w'+curWeek+'_s'+i);}catch(e){} }
+  renderWorkout(); rpSkip();
+}
 function rndAdj(key,d){ done[key]=Math.max(0,(done[key]||0)+d); saveDone(); const el=document.getElementById('rc_'+key); if(el) el.textContent=done[key]; }
 function saveDone(){
   const out={};
@@ -987,7 +1074,7 @@ function tabTick(){
         clearInterval(tab.iv); tab.running=false;
         document.getElementById('tab-go').textContent='▶ Avvia';
         document.getElementById('tab-phase').textContent='🎉 COMPLETATO!';
-        buzz(); notify('🔥 Tabata completato!', 'Ottimo lavoro — '+tab.rounds+' round finiti!'); return;
+        notify('🔥 Tabata completato!', 'Ottimo lavoro — '+tab.rounds+' round finiti!'); return;
       }
     } else if(tab.phase==='restEx'){
       tab.phase='work'; tab.rem=tab.exDuration;
